@@ -43,4 +43,15 @@ class MailInsertionTest extends TestCase
 
        $this->assertDatabaseCount('contests', 0);
    }
+
+   public function email_must_be_an_email()
+   {
+       $this->withoutExceptionHandling();
+
+       $this->post('/contest', [
+        'email' => 'abcdefghijklmn'
+       ]);
+
+       $this->assertDatabaseCount('contests', 0);
+   }
 }
